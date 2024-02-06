@@ -18,6 +18,7 @@ RSpec.describe "Cats", type: :request do
       expect(cat.length).to eq 1
     end
   end
+
   describe "POST /create" do
     it "creates a cat" do
       # The params we are going to send with the request
@@ -41,6 +42,30 @@ RSpec.describe "Cats", type: :request do
   
       # Assure that the created cat has the correct attributes
       expect(cat.name).to eq 'Buster'
+    end
+  end
+
+  describe "PATCH /cats/:id" do
+    let!(:cat) { Cat.create(name: 'Whiskers', age: 3, enjoys: 'Lounging in the sun', image: 'http://tinyurl.com/22357jc4') }
+  
+    it "updates a cat" do
+      new_attributes = {
+        cat: {
+          name: 'Whiskers II',
+          age: 4,
+          enjoys: 'Chasing shadows',
+          image: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
+        }
+      }
+  
+      patch "/cats/#{cat.id}", params: new_attributes
+  
+      cat.reload
+      expect(cat.name).to eq 'Whiskers II'
+      expect(cat.age).to eq 4
+      expect(cat.enjoys).to eq 'Chasing shadows'
+      expect(cat.image).to eq new_attributes[:cat][:image]
+      expect(response).to have_http_status(200)
     end
   end
 end

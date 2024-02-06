@@ -1,4 +1,6 @@
 class CatsController < ApplicationController
+    before_action :set_cat, only: [:show, :update, :destroy]
+
     def index
         cats = Cat.all
         render json: cats 
@@ -8,18 +10,7 @@ class CatsController < ApplicationController
         # Create a new cat
         cat = Cat.create(cat_params)
         render json: cat
-      end
-    
-      # Handle strong parameters, so we are secure
-      private
-      def cat_params
-        params.require(:cat).permit(:name, :age, :enjoys, :image)
-      end
-  
-    def update
     end
-  
-    def destroy
-    end
-   
 end
+
+    
