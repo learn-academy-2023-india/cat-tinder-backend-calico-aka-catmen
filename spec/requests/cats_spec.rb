@@ -31,6 +31,7 @@ RSpec.describe "Cats", type: :request do
 
       post '/cats', params: cat_params, as: :json
 
+
        cat = Cat.first
       expect(response).to have_http_status(200)
       expect(cat.name).to eq 'Captain Midnight'
@@ -126,6 +127,7 @@ RSpec.describe "Cats", type: :request do
     end
   end
 
+
   describe "DELETE /destroy" do
     it "deletes a cat" do
       cat = Cat.create(
@@ -142,4 +144,6 @@ RSpec.describe "Cats", type: :request do
       expect(cats.length).to eq 0
     end
   end  
+
 end
+
