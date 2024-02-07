@@ -4,13 +4,6 @@ class CatsController < ApplicationController
     render json: cats
    end
 
-   # API Endpoint Test
-   # def create
-   #  cat = Cat.create(cat_params)
-   #  render json: cat
-   # end
-
-   # API Validation Test
    def create
       cat = Cat.create(cat_params)
       if cat.valid?
@@ -20,14 +13,6 @@ class CatsController < ApplicationController
       end
    end
 
-   # API Endpoint Test
-   # def update
-   #  cat = Cat.find(params[:id])
-   #  cat.update(cat_params)
-   #  render json: cat
-   # end
-
-   # API Validation Test
    def update
       cat = Cat.find(params[:id])
       cat.update(cat_params)

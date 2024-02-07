@@ -17,8 +17,8 @@ RSpec.describe Cat, type: :model do
   end
 
   it "validates length of enjoys" do
-    cat = Cat.create(name: "Whiskers", age: 3, enjoys: "Meow Mix, and plenty of sunshine", image: "http://tinyurl.com/3jvmk3je")
-    expect(cat.errors[:enjoys]).to be_empty
+    cat = Cat.create(name: "Whiskers", age: 3, enjoys: "Meow", image: "http://tinyurl.com/3jvmk3je")
+    expect(cat.errors[:enjoys]).to_not be_empty
   end
 
   it "should validate image" do
